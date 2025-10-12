@@ -43,7 +43,7 @@ int main(){
                 registerUser(&userCount, user);
                 break;
             case '2':
-                searchUser();
+                searchUser(&userCount,user);
                 break;
             default:
                 break;
@@ -96,17 +96,31 @@ void registerUser(int* userNum, User *U){
         
         printf("user %d:\n", i+1);
         printf("Input name: ");
-        scanf("%s", (U+u+i)->name);
+        scanf("%s", &(U+u+i)->name);
         printf("Input id: ");
-        scanf("%d", (U+u+i)->id);
+        scanf("%d", &(U+u+i)->id);
         printf("Input department: ");
-        scanf("%s", (U+u+i)->dept);
+        scanf("%s", &(U+u+i)->dept);
         printf("Input semester: ");
-        scanf("%d", (U+u+i)->sem);
+        scanf("%d", &(U+u+i)->sem);
     }
+    *userNum+=n;
     printf("Registration has been completed\n");
 }
 
-void searchUser(){
-
+void searchUser(int* userNum, User users[]){
+    printf("Search by:\n1. Name\n2. id");
+    int c, n[*userNum];
+    scanf("%d",&c);
+    if(c==1){
+        char name[50];
+        printf("Enter name: ");
+        scanf("%s", name);
+        for(int i=0, a=0; i<*userNum;i++){
+            for(int j=0; j<strlen(name);j++){
+                if(name[j]!=users[i].name[j])continue;
+            }
+            n[a++]=i;
+        }
+    }
 }
