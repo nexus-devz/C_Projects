@@ -12,7 +12,7 @@ void registerBook(int* BookNum, Book *B){
     //need to comp n and u (but if i use file handling then i dont need it)
     for(int i=0; i<n; i++){
         int am = 0;
-        printf("user %d:\n", i+1);
+        printf("book %d:\n", i+1);
         printf("Input name: ");
         scanf(" %s", &(B+u+i)->name); // did this cz i just wanted to practice pointer
         printf("Input id: ");
@@ -27,7 +27,7 @@ void registerBook(int* BookNum, Book *B){
         scanf("%d", &am);
         (B+u+i)->total+=am;
     }
-    //updating how many users has been registered and adding with the previous number
+    //updating how many books has been registered and adding with the previous number
     *BookNum+=n;
     printf("Registration has been completed.\n");
 }
