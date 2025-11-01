@@ -4,6 +4,7 @@
 #include<string.h>
 #include<ctype.h>
 #include "user.h"
+#include "book.h"
 const char adminName[] = "admin";
 const char adminPass[] = "1234";
 
@@ -14,6 +15,7 @@ int main(){
     int userCount = 0; // for now
     int bookCount = 0; // for now
     User user[1000];
+    Book book[1000];
     
     printf("\tWelcome to Ist Library\nPlease verify your user name and password\n\n");
 

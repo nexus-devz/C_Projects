@@ -1,3 +1,4 @@
+//user functions
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
@@ -8,12 +9,12 @@ void registerUser(int* userNum, User *U){
     int n, u= *userNum;
     printf("Enter the number of users you want to register: ");
     scanf(" %d", &n);
-    //need to comp n and u (but if i use file hadling then i dont need it)
+    //need to comp n and u (but if i use file handling then i dont need it)
     for(int i=0; i<n; i++){
         
         printf("user %d:\n", i+1);
         printf("Input name: ");
-        scanf(" %s", &(U+u+i)->name);
+        scanf(" %s", &(U+u+i)->name); // did this cz i just wanted to practice pointer
         printf("Input id: ");
         scanf(" %d", &(U+u+i)->id);
         printf("Input department: ");
@@ -21,6 +22,7 @@ void registerUser(int* userNum, User *U){
         printf("Input semester: ");
         scanf(" %d", &(U+u+i)->sem);
     }
+    //updating how many users has been registered and adding with the previous number
     *userNum+=n;
     printf("Registration has been completed\n");
 }
@@ -48,6 +50,9 @@ void searchByName(int n[],int s, int c, User users[]){
             }
         }
         if(found){
+            while (c) // this c can only be zero after the while funtion executes, it can be done with do-while
+            {
+
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
             printf("%d. %s\n",i+1,users[n[i]].name);
@@ -58,7 +63,7 @@ void searchByName(int n[],int s, int c, User users[]){
         profile(n, c-1, users);
         }
         
-
+            }
         }
         else{
             printf("User not found.\n");
@@ -75,7 +80,7 @@ void profile(int n[], int c, User users[]){
     printf("Due: %d\n", users[n[c]].due);
     printf("Status: %s\n", users[n[c]].status);
     printf("\n\n\tChoose an option from below:\n");
-    printf("1. Edit User Profile\n2. Lent Books\n3. Return Books\n0. Return to menu\nEnter your choice: ");
+    printf("1. Edit User Profile\n2. Lent Books\n3. Return Books\n0. Return to search\nEnter your choice: ");
     int ch;
     scanf(" %d", &ch);
     
