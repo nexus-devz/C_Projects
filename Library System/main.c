@@ -5,6 +5,7 @@
 #include<ctype.h>
 #include "user.h"
 #include "book.h"
+
 const char adminName[] = "admin";
 const char adminPass[] = "1234";
 
@@ -50,6 +51,23 @@ int main(){
 
         case '2':
             //books
+            char choice='0';
+            while(choice!='3'){
+                printf("Choose from below:\n");
+                printf("\t1. Register new books\n\t2. Search books\n\t3. Back\n");
+                printf("Enter the option number of your choice: ");
+            scanf(" %c", &choice);
+            switch(choice){
+            case '1':
+                registerBook(&bookCount, book);
+                break;
+            case '2':
+                searchBook(bookCount, book);
+                break;
+            default:
+                break;
+                }
+            }
             break;
         case '3':
             return 0;

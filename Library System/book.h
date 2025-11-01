@@ -9,10 +9,10 @@ typedef struct {
 
 void registerBook(int* BookNum, Book *B);
 void searchBook(int BookNum, Book Books[]);
-void profile(int n[], int c, Book Books[]);
-void searchByName(int n[], int s, int c, Book Books[]);
+void book(int n[], int c, Book Books[]);
+void searchBookByName(int n[], int s, int c, Book Books[]);
 void searchByAuthor(int n[], int s, int c, Book Books[]);
-void searchByid(int n[], int s, int c, Book Books[]);
+void searchBookByid(int n[], int s, int c, Book Books[]);
 void searchBycatagory(int n[], int s, int c, Book Books[]);
 
 
