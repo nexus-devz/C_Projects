@@ -32,11 +32,128 @@ void registerBook(int* BookNum, Book *B){
     printf("Registration has been completed.\n");
 }
 
-void searchBook(int bookNum, Book users[]){
-    printf("Search by:\n1. Name\n2. id\n:");
+void searchBook(int bookNum, Book Books[]){
+    
+    printf("Search by:\n1. Name\n2. Author\n3. Id\n4. Category\n:");
     int c=0, n[bookNum]; //temporary array to store indx with most possible size
+
     scanf(" %d",&c);
-    if(c==1){
-        // searchByName(n, bookNum, c, users);
+    switch(c){
+        case 1:
+            searchBookByName(n, bookNum, c, Books);
+            break;
+        case 2:
+            searchBookByAuthor(n, bookNum, c, Books);
+            break;
+        case 3:
+            searchBookById(n, bookNum, c, Books);
+            break;
+        case 4:
+            searchBookByCatagory(n, bookNum, c, Books);
+            break;
+        default:
+            printf("Invalid Input\n");
+            break;
+    }
+}
+
+void searchBookByName(int n[], int s, int c, Book Books[]){
+    //make this a search by name function**
+        char name[50];
+        printf("\nEnter name: ");
+        scanf(" %s", name);
+        int found=0;
+        for(int i=0, a=0; i<s;i++){
+            
+                if(strstr(Books[i].name,name)){
+                    n[a++]=i;
+                    found++;
+            }
+        }
+        if(found){
+            while (c) // this c can only be zero after the while funtion executes, it can be done with do-while
+            {
+
+            printf("\n\tSearch Result:\n\n");
+        for(int i=0; i<found; i++){
+            printf("%d. %s\n",i+1,Books[n[i]].name);
+        }
+        printf("\nChoose the user number from above to see Books's profile. Type 0 to return: ");
+        // scanf(" %d",&c);
+        // if(c){
+        // bookProfile(n, c-1, Books);
+        // }
+        
+            }
+        }
+        else{
+            printf("Book not found.\n");
+        }
+}
+void searchBookByAuthor(int n[], int s, int c, Book Books[]){
+
+}
+void searchBookById(int n[], int s, int c, Book Books[]){
+
+}
+void searchBookByCatagory(int n[], int s, int c, Book Books[]){
+
+}
+
+void bookProfile(int n[], int c, Book Books[]){
+    //need to load user account details here
+    printf("\tUser Profile:\n");
+    printf("Name: %s\n", Books[n[c]].name);
+    printf("Id: %d\n", Books[n[c]].id);
+    // printf("Dept: %s\n", Books[n[c]].dept);
+    printf("Semester: %d\n", Books[n[c]].sem);
+    // printf("Books borrowed: %d\n", Books[n[c]].booksKept);
+    // printf("Due: %d\n", Books[n[c]].due);
+    printf("Status: %s\n", Books[n[c]].status);
+    printf("\n\n\tChoose an option from below:\n");
+    printf("1. Edit User Profile\n2. Lent Books\n3. Return Books\n0. Return to search\nEnter your choice: ");
+    int ch;
+    scanf(" %d", &ch);
+    
+    switch(ch) {
+        case 0:
+            return;
+        case 1:
+        // Add edit profile functionality
+        printf("\n\n\tChoose an option from below:\n1. Name\n2. Id\n3. Department\n4. Semester\n5. Due\nEnter your choice: ");
+        scanf("%d", &ch);
+        switch(ch){
+                case 1:
+                printf("Input name: ");
+                scanf(" %s", &Books[n[c]].name);
+                    break;
+                case 2:
+                printf("Input id: ");
+                scanf(" %d", &Books[n[c]].id);
+                    break;
+                case 3:
+                printf("Input department: ");
+                // scanf(" %s", &Books[n[c]].dept);
+                    break;
+                case 4:
+                printf("Input semester: ");
+                scanf(" %d", &Books[n[c]].sem);
+                    break;
+                default:
+            printf("Invalid choice!\n");
+            break;
+            }
+            break;
+        case 2:
+            // Add lent books functionality
+            //will be added after the books function is done
+            break;
+        case 3:
+            // Add return books functionality
+            //will be added after the books function is done
+            break;
+        default:
+            printf("Invalid choice!\n");
+            break;
     }
 }

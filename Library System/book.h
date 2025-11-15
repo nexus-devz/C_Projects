@@ -11,9 +11,10 @@ void registerBook(int* BookNum, Book *B);
 void searchBook(int BookNum, Book Books[]);
 void book(int n[], int c, Book Books[]);
 void searchBookByName(int n[], int s, int c, Book Books[]);
-void searchByAuthor(int n[], int s, int c, Book Books[]);
-void searchBookByid(int n[], int s, int c, Book Books[]);
-void searchBycatagory(int n[], int s, int c, Book Books[]);
+void searchBookByAuthor(int n[], int s, int c, Book Books[]);
+void searchBookById(int n[], int s, int c, Book Books[]);
+void searchBookByCatagory(int n[], int s, int c, Book Books[]);
+void bookProfile(int n[], int c, Book Books[]);
 
 
 #endif
