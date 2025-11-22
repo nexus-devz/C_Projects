@@ -5,38 +5,38 @@
 #include "lib.h" // provides functions/types used here; lib.h includes user.h (but consider including user.h directly if this file depends on User)
 
 
-void registerUser(int* userNum, User *U){
+void registerUser(){
     int n, u= *userNum;
-    printf("Enter the number of users you want to register: ");
+    printf("Enter the number of user you want to register: ");
     scanf(" %d", &n);
     //need to comp n and u (but if i use file handling then i dont need it)
     for(int i=0; i<n; i++){
         
         printf("user %d:\n", i+1);
         printf("Input name: ");
-        scanf(" %s", &(U+u+i)->name); // did this cz i just wanted to practice pointer
+        scanf(" %s", &(user+u+i)->name); // did this cz i just wanted to practice pointer
         printf("Input id: ");
-        scanf(" %d", &(U+u+i)->id);
+        scanf(" %d", &(user+u+i)->id);
         printf("Input department: ");
-        scanf(" %s", &(U+u+i)->dept);
+        scanf(" %s", &(user+u+i)->dept);
         printf("Input semester: ");
-        scanf(" %d", &(U+u+i)->sem);
+        scanf(" %d", &(user+u+i)->sem);
     }
-    //updating how many users has been registered and adding with the previous number
+    //updating how many user has been registered and adding with the previous number
     *userNum+=n;
     printf("Registration has been completed\n");
 }
 
-void searchUser(int userNum, User users[]){
+void searchUser(int n[], int c){
     printf("Search by:\n1. Name\n2. id\n:");
-    int c=0, n[userNum]; //temporary array to store indx with most possible size
+    // int c=0, n[*userNum]; //temporary array to store indx with most possible size
     scanf(" %d",&c);
     if(c==1){
-        searchByName(n, userNum, c, users);
+        searchByName(n, *userNum, c);
     }
 }
 
-void searchByName(int n[],int s, int c, User users[]){
+void searchByName(int n[],int s, int c){
     //make this a search by name function**
         char name[50];
         printf("\nEnter name: ");
@@ -44,7 +44,7 @@ void searchByName(int n[],int s, int c, User users[]){
         int found=0;
         for(int i=0, a=0; i<s;i++){
             
-                if(strstr(users[i].name,name)){
+                if(strstr(user[i].name,name)){
                     n[a++]=i;
                     found++;
             }
@@ -55,7 +55,7 @@ void searchByName(int n[],int s, int c, User users[]){
 
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
-            printf("%d. %s\n",i+1,users[n[i]].name);
+            printf("%d. %s\n",i+1,user[n[i]].name);
         }
         
         // }
@@ -65,16 +65,16 @@ void searchByName(int n[],int s, int c, User users[]){
     }
 }
 
-void profile(int n[], int c, User users[], Book books[], int bookNum){
+void profile(User users){
     //need to load user account details here
     printf("\tUser Profile:\n");
-    printf("Name: %s\n", users[n[c]].name);
-    printf("Id: %d\n", users[n[c]].id);
-    printf("Dept: %s\n", users[n[c]].dept);
-    printf("Semester: %d\n", users[n[c]].sem);
-    printf("Books borrowed: %d\n", users[n[c]].booksKept);
-    printf("Due: %d\n", users[n[c]].due);
-    printf("Status: %s\n", users[n[c]].status);
+    printf("Name: %s\n", users.name);
+    printf("Id: %d\n", users.id);
+    printf("Dept: %s\n", users.dept);
+    printf("Semester: %d\n", users.sem);
+    printf("Books borrowed: %d\n", users.booksKept);
+    printf("Due: %d\n", users.due);
+    printf("Status: %s\n", users.status);
     printf("\n\n\tChoose an option from below:\n");
     printf("1. Edit User Profile\n2. Lent Books\n3. Return Books\n0. Return to search\nEnter your choice: ");
     int ch;
@@ -90,19 +90,19 @@ void profile(int n[], int c, User users[], Book books[], int bookNum){
         switch(ch){
                 case 1:
                 printf("Input name: ");
-                scanf(" %s", &users[n[c]].name);
+                scanf(" %s", &users.name);
                     break;
                 case 2:
                 printf("Input id: ");
-                scanf(" %d", &users[n[c]].id);
+                scanf(" %d", &users.id);
                     break;
                 case 3:
                 printf("Input department: ");
-                scanf(" %s", &users[n[c]].dept);
+                scanf(" %s", &users.dept);
                     break;
                 case 4:
                 printf("Input semester: ");
-                scanf(" %d", &users[n[c]].sem);
+                scanf(" %d", &users.sem);
                     break;
                 default:
             printf("Invalid choice!\n");
@@ -111,7 +111,7 @@ void profile(int n[], int c, User users[], Book books[], int bookNum){
             break;
         case 2:
             // Add lent books functionality
-            lentBooks(bookNum, books, users);
+            lentBooks(&users);
             break;
         case 3:
             // Add return books functionality

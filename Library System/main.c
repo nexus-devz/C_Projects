@@ -7,7 +7,14 @@
 // #include "book.h"
 #include "lib.h" // as lib.h has both user.h and book.h in it i dont nned to write them saperately
 
+ int userCount = 0; // for now
+ int bookCount = 0; // for now
+ User user[1000];
+ Book book[1000];
 
+ //pointer init
+    int *userNum = &userCount;;
+    int *bookNum = &bookCount;
 
 const char adminName[] = "admin";
 const char adminPass[] = "1234";
@@ -16,10 +23,7 @@ int isLoggedIn();
 
 int main(){
     char opt = '0';
-    int userCount = 0; // for now
-    int bookCount = 0; // for now
-    User user[1000];
-    Book book[1000];
+    
     
     printf("\tWelcome to Ist Library\nPlease verify your user name and password\n\n");
 
@@ -42,15 +46,15 @@ int main(){
             scanf(" %c", &ch);
             switch(ch){
             case '1':
-                registerUser(&userCount, user);
+                registerUser();
                 break;
             case '2':{
                 int n[userCount], c=0;
-                searchUser(userCount,user); // need changes
+                searchUser(n, c); // need changes
                 printf("\nChoose the user number from above to see user's profile. Type 0 to return: ");
                 scanf(" %d",&c);
                 if(c){
-                profile(n, c-1, user, book, bookCount);
+                profile(user[n[c-1]]);
                 }
                 break;
             }
@@ -70,17 +74,17 @@ int main(){
             scanf(" %c", &choice);
             switch(choice){
             case '1':
-                registerBook(&bookCount, book);
+                registerBook();
                 break;
             
             case '2':{
                 int c=0, n[bookCount]; //temporary array to store indx with most possible size
-                searchBook(bookCount, c, n, book);
+                searchBook(c, n);
 
                 printf("\nChoose the user number from above to see Books's profile. Type 0 to return: ");
                 scanf(" %d",&c);
                 if(c){
-                bookProfile(n, c-1, book);
+                bookProfile(book[n[c-1]]);
                 }
                 break;
             }

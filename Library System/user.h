@@ -14,9 +14,9 @@ typedef struct User {
 } User;
 
 /* function prototypes — types User and Book come from types.h */
-void registerUser(int* userNum, User *U);
-void searchUser(int userNum, User users[]);
-void profile(int n[], int c, User users[], Book books[], int bookNum);
-void searchByName(int n[], int s, int c, User users[]);
+void registerUser();
+void searchUser(int n[], int c);
+void profile(User user);
+void searchByName(int n[], int s, int c);
 
 #endif
