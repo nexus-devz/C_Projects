@@ -5,6 +5,7 @@
 #include<ctype.h>
 #include "user.h"
 #include "book.h"
+#include "types.h"
 
 const char adminName[] = "admin";
 const char adminPass[] = "1234";
@@ -30,7 +31,7 @@ int main(){
 
         switch(opt){
 
-            case '1':
+            case '1':{
             char ch='0';
             while(ch!='3'){
                 printf("Choose from below:\n");
@@ -41,15 +42,22 @@ int main(){
             case '1':
                 registerUser(&userCount, user);
                 break;
-            case '2':
-                searchUser(userCount,user);
+            case '2':{
+                int n[userCount], c=0;
+                searchUser(userCount,user); // need changes
+                printf("\nChoose the user number from above to see user's profile. Type 0 to return: ");
+                scanf(" %d",&c);
+                if(c){
+                profile(n, c-1, user, book, bookCount);
+                }
                 break;
+            }
             default:
                 break;
                 }
-            }
-                break;
-
+            }// braces is a good practice, but still works without braces
+            break;
+        }
         case '2':
             //books
             char choice='0';
@@ -62,16 +70,28 @@ int main(){
             case '1':
                 registerBook(&bookCount, book);
                 break;
-            case '2':
-                searchBook(bookCount, book);
+            
+            case '2':{
+                int c=0, n[bookCount]; //temporary array to store indx with most possible size
+                searchBook(bookCount, c, n, book);
+
+                printf("\nChoose the user number from above to see Books's profile. Type 0 to return: ");
+                scanf(" %d",&c);
+                if(c){
+                bookProfile(n, c-1, book);
+                }
                 break;
+            }
+
             default:
                 break;
                 }
             }
             break;
+
         case '3':
             return 0;
+        
         default:
             printf("Invalid input");
             break;
@@ -108,8 +128,8 @@ int isLoggedIn(){
 
 
 /* Plan
-1. make a book structure
-2. make sure to use some of books elemnnt with user such as books keeping duration.
+1. make a book structure \/
+2. make sure to use some of books elemnnt with user such as books keeping duration. 
 3. make a profile loading function
 4. make sure to update dues, book kept duration etc with current date
 5. use file handling for better data arrangement

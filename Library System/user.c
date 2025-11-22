@@ -3,6 +3,8 @@
 #include<string.h>
 #include<ctype.h>
 #include "user.h"
+#include "book.h"   // <-- make lentBooks() and Book visible to this translation unit
+
 
 
 void registerUser(int* userNum, User *U){
@@ -50,26 +52,22 @@ void searchByName(int n[],int s, int c, User users[]){
             }
         }
         if(found){
-            while (c) // this c can only be zero after the while funtion executes, it can be done with do-while
-            {
+            // while (c) // this c can only be zero after the while funtion executes, it can be done with do-while
+            // {
 
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
             printf("%d. %s\n",i+1,users[n[i]].name);
         }
-        printf("\nChoose the user number from above to see user's profile. Type 0 to return: ");
-        scanf(" %d",&c);
-        if(c){
-        profile(n, c-1, users);
-        }
         
-            }
-        }
-        else{
-            printf("User not found.\n");
-        }
+        // }
+    }
+    else{
+        printf("User not found.\n");
+    }
 }
-void profile(int n[], int c, User users[]){
+
+void profile(int n[], int c, User users[], Book books[], int bookNum){
     //need to load user account details here
     printf("\tUser Profile:\n");
     printf("Name: %s\n", users[n[c]].name);
@@ -115,11 +113,11 @@ void profile(int n[], int c, User users[]){
             break;
         case 2:
             // Add lent books functionality
-            //will be added after the books function is done
+            lentBooks(bookNum, books, users);
             break;
         case 3:
             // Add return books functionality
-            //will be added after the books function is done
+            // returnBook();
             break;
         default:
             printf("Invalid choice!\n");
@@ -127,3 +125,4 @@ void profile(int n[], int c, User users[]){
     }
 }
 
+ // search and profile function need to be separate so i can use them again
