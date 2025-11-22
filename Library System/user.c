@@ -2,9 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
-#include "user.h"
-#include "book.h"   // <-- make lentBooks() and Book visible to this translation unit
-
+#include "lib.h" // provides functions/types used here; lib.h includes user.h (but consider including user.h directly if this file depends on User)
 
 
 void registerUser(int* userNum, User *U){

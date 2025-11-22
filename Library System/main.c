@@ -3,9 +3,11 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
-#include "user.h"
-#include "book.h"
-#include "types.h"
+// #include "user.h"
+// #include "book.h"
+#include "lib.h" // as lib.h has both user.h and book.h in it i dont nned to write them saperately
+
+
 
 const char adminName[] = "admin";
 const char adminPass[] = "1234";

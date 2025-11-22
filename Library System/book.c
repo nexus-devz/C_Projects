@@ -60,7 +60,9 @@ void searchBook(int bookNum, int c, int n[], Book Books[]){
 
 void searchBookByName(int n[], int s, int c, Book Books[]){
     //make this a search by name function**
+        int isfnd =1;
         char name[50];
+        while(isfnd){
         printf("\nEnter name: ");
         scanf(" %s", name);
         int found=0;
@@ -74,7 +76,7 @@ void searchBookByName(int n[], int s, int c, Book Books[]){
         if(found){
             // while (c) // this c can only be zero after the while funtion executes, it can be done with do-while
             // {
-
+            isfnd=0;
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
             printf("%d. %s\n",i+1,Books[n[i]].name);
@@ -86,6 +88,7 @@ void searchBookByName(int n[], int s, int c, Book Books[]){
         else{
             printf("Book not found.\n");
         }
+    }
 }
 void searchBookByAuthor(int n[], int s, int c, Book Books[]){
     char author[50];
@@ -252,20 +255,3 @@ void bookProfile(int n[], int c, Book Books[]){
     }
 }
 
-void lentBooks(int bookNum, Book books[], User *users){
-    User selUser = *users;
-    int n[bookNum], found=0;
-    // need a loop
-    printf("Search for the book\n");
-    searchBook(bookNum, found, n, books);
-    printf("\nChoose the book to be lent. Type 0 to return: ");
-    scanf(" %d",&found);
-    printf("How many book to be lent: ");
-    int cnt=0;
-    scanf("%d", &cnt);
-    selUser.booksKept += cnt;
-    books[n[found-1]].booklent += cnt;
-    books[n[found-1]].available = books[n[found-1]].total - books[n[found-1]].booklent;
-    *users = selUser;
-
-}
