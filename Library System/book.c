@@ -5,7 +5,6 @@
 #include "lib.h"
 
 
-
 void registerBook(){
     int n, u= *bookNum;
     printf("Enter the number of new books you want to register: ");
