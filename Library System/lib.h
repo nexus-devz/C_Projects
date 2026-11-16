@@ -4,12 +4,12 @@
 #include "book.h"
 #include "user.h"
 
-    extern int userCount; // for now
-    extern int bookCount; // for now
-    extern User users[1000];
-    extern Book books[1000];
-    //pointer def
-    extern int *userNum, *bookNum;
+extern int userCount; // for now
+extern int bookCount; // for now
+extern User users[1000];
+extern Book books[1000];
+// pointer def
+extern int *userNum, *bookNum;
 
 // Lend a book to a user
 void lentBooks();

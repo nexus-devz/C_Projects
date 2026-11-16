@@ -2,16 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++ Runner: Debug Session",
+      "name": "Run Library (build first)",
       "type": "cppdbg",
       "request": "launch",
+      "program": "${workspaceFolder}\\library.exe",
       "args": [],
       "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
       "externalConsole": true,
-      "cwd": "g:/Code with repository/C_Projects/Library System",
-      "program": "g:/Code with repository/C_Projects/Library System/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
+      "preLaunchTask": "Build Library (C23)",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Library (C23)",
+      "type": "process",
+      "command": "gcc",
+      "args": [
+        "-std=c23",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "${workspaceFolder}\\main.c",
+        "${workspaceFolder}\\user.c",
+        "${workspaceFolder}\\book.c",
+        "${workspaceFolder}\\lib.c",
+        "-o",
+        "${workspaceFolder}\\library.exe"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

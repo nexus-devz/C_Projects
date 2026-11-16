@@ -1,4 +1,4 @@
-//book.h
+// book.h
 #ifndef BOOK_H
 #define BOOK_H
 
@@ -21,6 +21,5 @@ void searchBookByAuthor(int n[], int s, int c);
 void searchBookById(int n[], int s, int c);
 void searchBookByCatagory(int n[], int s, int c);
 void bookProfile(Book books);
-
 
 #endif
