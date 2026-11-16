@@ -6,18 +6,18 @@
 
     extern int userCount; // for now
     extern int bookCount; // for now
-    extern User user[1000];
-    extern Book book[1000];
+    extern User users[1000];
+    extern Book books[1000];
     //pointer def
     extern int *userNum, *bookNum;
 
 // Lend a book to a user
-void lentBooks(User *users);
+void lentBooks();
 
 // Return a book from a user
-void returnBook(User *users);
+void returnBook();
 
 // Display all books lent to a user
-void showUserBooks(User *users, Book *books);
+void showUserBooks();
 
 #endif

@@ -9,8 +9,8 @@
 
  int userCount = 0; // for now
  int bookCount = 0; // for now
- User user[1000];
- Book book[1000];
+ User users[1000];
+ Book books[1000];
 
  //pointer init
     int *userNum = &userCount;;
@@ -54,7 +54,7 @@ int main(){
                 printf("\nChoose the user number from above to see user's profile. Type 0 to return: ");
                 scanf(" %d",&c);
                 if(c){
-                profile(user[n[c-1]]);
+                profile(users[n[c-1]]);
                 }
                 break;
             }
@@ -84,7 +84,7 @@ int main(){
                 printf("\nChoose the user number from above to see Books's profile. Type 0 to return: ");
                 scanf(" %d",&c);
                 if(c){
-                bookProfile(book[n[c-1]]);
+                bookProfile(books[n[c-1]]);
                 }
                 break;
             }

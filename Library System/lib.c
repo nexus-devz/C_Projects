@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include "lib.h"
 
-void lentBooks(User *users){
+void lentBooks(){
     User selUser = *users;
     int n[*bookNum], found=0;
     // need a loop
@@ -10,12 +10,15 @@ void lentBooks(User *users){
     searchBook(found, n);
     printf("\nChoose the book to be lent. Type 0 to return: ");
     scanf(" %d",&found);
+    if(!found){
+        return;
+    }
     printf("How many book to be lent: ");
     int cnt=0;
     scanf("%d", &cnt);
     selUser.booksKept += cnt;
-    book[n[found-1]].booklent += cnt;
-    book[n[found-1]].available = book[n[found-1]].total - book[n[found-1]].booklent;
+    books[n[found-1]].booklent += cnt;
+    books[n[found-1]].available = books[n[found-1]].total - books[n[found-1]].booklent;
     *users = selUser;
     printf("Book has been lent for 15 days.\n");
 }

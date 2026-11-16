@@ -14,13 +14,13 @@ void registerUser(){
         
         printf("user %d:\n", i+1);
         printf("Input name: ");
-        scanf(" %s", &(user+u+i)->name); // did this cz i just wanted to practice pointer
+        scanf(" %s", &(users+u+i)->name); // did this cz i just wanted to practice pointer
         printf("Input id: ");
-        scanf(" %d", &(user+u+i)->id);
+        scanf(" %d", &(users+u+i)->id);
         printf("Input department: ");
-        scanf(" %s", &(user+u+i)->dept);
+        scanf(" %s", &(users+u+i)->dept);
         printf("Input semester: ");
-        scanf(" %d", &(user+u+i)->sem);
+        scanf(" %d", &(users+u+i)->sem);
     }
     //updating how many user has been registered and adding with the previous number
     *userNum+=n;
@@ -44,7 +44,7 @@ void searchByName(int n[],int s, int c){
         int found=0;
         for(int i=0, a=0; i<s;i++){
             
-                if(strstr(user[i].name,name)){
+                if(strstr(users[i].name,name)){
                     n[a++]=i;
                     found++;
             }
@@ -55,7 +55,7 @@ void searchByName(int n[],int s, int c){
 
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
-            printf("%d. %s\n",i+1,user[n[i]].name);
+            printf("%d. %s\n",i+1,users[n[i]].name);
         }
         
         // }
@@ -111,7 +111,7 @@ void profile(User users){
             break;
         case 2:
             // Add lent books functionality
-            lentBooks(&users);
+            lentBooks();
             break;
         case 3:
             // Add return books functionality

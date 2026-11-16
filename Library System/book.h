@@ -16,7 +16,7 @@ typedef struct Book {
 
 void registerBook();
 void searchBook(int c, int n[]);
-void searchBookByName(int n[], int s, int c);
+void searchBookByName(int n[], int s);
 void searchBookByAuthor(int n[], int s, int c);
 void searchBookById(int n[], int s, int c);
 void searchBookByCatagory(int n[], int s, int c);

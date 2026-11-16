@@ -1,9 +1,9 @@
-//book functions
+//books functions
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
 #include "lib.h"
-
+///onk kaj baki
 
 void registerBook(){
     int n, u= *bookNum;
@@ -12,20 +12,20 @@ void registerBook(){
     //need to comp n and u (but if i use file handling then i dont need it)
     for(int i=0; i<n; i++){
         int am = 0;
-        printf("book %d:\n", i+1);
+        printf("books %d:\n", i+1);
         printf("Input name: ");
-        scanf(" %s", &(book+u+i)->name); // did this cz i just wanted to practice pointer
+        scanf(" %s", &(books+u+i)->name); // did this cz i just wanted to practice pointer
         printf("Input id: ");
-        scanf(" %d", &(book+u+i)->id);
+        scanf(" %d", &(books+u+i)->id);
         printf("Input author: ");
-        scanf(" %s", &(book+u+i)->author);
+        scanf(" %s", &(books+u+i)->author);
         printf("Input semester: ");
-        scanf(" %d", &(book+u+i)->sem);
+        scanf(" %d", &(books+u+i)->sem);
         printf("Input catagory: ");
-        scanf(" %s", &(book+u+i)->catg);
+        scanf(" %s", &(books+u+i)->catg);
         printf("Input amount: ");
         scanf("%d", &am);
-        (book+u+i)->total+=am;
+        (books+u+i)->total+=am;
     }
     //updating how many books has been registered and adding with the previous number
     *bookNum+=n;
@@ -61,13 +61,14 @@ void searchBookByName(int n[], int s, int c){
     //make this a search by name function**
         int isfnd =1;
         char name[50];
-        while(isfnd){
+        
+        for(int t=3; isfnd&&t>0 ;t--){
         printf("\nEnter name: ");
         scanf(" %s", name);
         int found=0;
         for(int i=0, a=0; i<s;i++){
             
-                if(strstr(book[i].name,name)){
+                if(strstr(books[i].name,name)){
                     n[a++]=i;
                     found++;
             }
@@ -78,14 +79,14 @@ void searchBookByName(int n[], int s, int c){
             isfnd=0;
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
-            printf("%d. %s\n",i+1,book[n[i]].name);
+            printf("%d. %s\n",i+1,books[n[i]].name);
         }
         
         
             // }
         }
         else{
-            printf("Book not found.\n");
+            printf("books not found.\n");
         }
     }
 }
@@ -96,7 +97,7 @@ void searchBookByAuthor(int n[], int s, int c){
         int found=0;
         for(int i=0, a=0; i<s;i++){
             
-                if(strstr(book[i].author,author)){
+                if(strstr(books[i].author,author)){
                     n[a++]=i;
                     found++;
             }
@@ -107,18 +108,18 @@ void searchBookByAuthor(int n[], int s, int c){
 
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
-            printf("%d. %s\n",i+1,book[n[i]].name);
+            printf("%d. %s\n",i+1,books[n[i]].name);
         }
-        printf("\nChoose the user number from above to see book's profile. Type 0 to return: ");
+        printf("\nChoose the user number from above to see books's profile. Type 0 to return: ");
         scanf(" %d",&c);
         if(c){
-        bookProfile(book[n[c-1]]);
+        bookProfile(books[n[c-1]]);
         }
         
             }
         }
         else{
-            printf("Book not found.\n");
+            printf("books not found.\n");
         }
 
 }
@@ -129,7 +130,7 @@ void searchBookById(int n[], int s, int c){
         int found=0;
         for(int i=0, a=0; i<s;i++){
             
-                if(book[i].id==id){
+                if(books[i].id==id){
                     n[a++]=i;
                     found++;
             }
@@ -140,18 +141,18 @@ void searchBookById(int n[], int s, int c){
 
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
-            printf("%d. %s\n",i+1,book[n[i]].name);
+            printf("%d. %s\n",i+1,books[n[i]].name);
         }
-        printf("\nChoose the user number from above to see book's profile. Type 0 to return: ");
+        printf("\nChoose the user number from above to see books's profile. Type 0 to return: ");
         scanf(" %d",&c);
         if(c){
-        bookProfile(book[n[c-1]]);
+        bookProfile(books[n[c-1]]);
         }
         
             }
         }
         else{
-            printf("Book not found.\n");
+            printf("books not found.\n");
         }
 }
 void searchBookByCatagory(int n[], int s, int c){
@@ -161,7 +162,7 @@ void searchBookByCatagory(int n[], int s, int c){
         int found=0;
         for(int i=0, a=0; i<s;i++){
             
-                if(strstr(book[i].catg,category)){
+                if(strstr(books[i].catg,category)){
                     n[a++]=i;
                     found++;
             }
@@ -172,18 +173,18 @@ void searchBookByCatagory(int n[], int s, int c){
 
             printf("\n\tSearch Result:\n\n");
         for(int i=0; i<found; i++){
-            printf("%d. %s\n",i+1,book[n[i]].name);
+            printf("%d. %s\n",i+1,books[n[i]].name);
         }
-        printf("\nChoose the user number from above to see book's profile. Type 0 to return: ");
+        printf("\nChoose the user number from above to see books's profile. Type 0 to return: ");
         scanf(" %d",&c);
         if(c){
-        bookProfile(book[n[c-1]]);
+        bookProfile(books[n[c-1]]);
         }
         
             }
         }
         else{
-            printf("Book not found.\n");
+            printf("books not found.\n");
         }
 
 }
@@ -195,11 +196,11 @@ void bookProfile(Book books){
     printf("Id: %d\n", books.id);
     printf("Dept: %s\n", books.catg);
     printf("Semester: %d\n", books.sem);
-    // printf("book borrowed: %d\n", books.booksKept);
+    // printf("books borrowed: %d\n", books.booksKept);
     // printf("Due: %d\n", books.due);
     printf("Status: %s\n", books.status);
     printf("\n\n\tChoose an option from below:\n");
-    printf("1. Edit Book Profile\n0. Return to search\nEnter your choice: ");
+    printf("1. Edit books Profile\n0. Return to search\nEnter your choice: ");
     int ch;
     scanf(" %d", &ch);
     
@@ -208,7 +209,7 @@ void bookProfile(Book books){
             return;
         case 1:
         // Add edit profile functionality
-        printf("\n\n\tChoose an option from below:\n1. Name\n2. Id\n3. Author\n4. Semester\n5. Category\n6. Total book\nEnter your choice: ");
+        printf("\n\n\tChoose an option from below:\n1. Name\n2. Id\n3. Author\n4. Semester\n5. Category\n6. Total books\nEnter your choice: ");
         scanf("%d", &ch);
         switch(ch){
                 case 1:
