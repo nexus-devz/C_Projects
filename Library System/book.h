@@ -15,11 +15,11 @@ typedef struct Book {
 } Book;
 
 void registerBook();
-void searchBook(int c, int n[]);
-void searchBookByName(int n[], int s, int c);
-void searchBookByAuthor(int n[], int s, int c);
-void searchBookById(int n[], int s, int c);
-void searchBookByCatagory(int n[], int s, int c);
+void searchBook(int n[]);
+void searchBookByName(int n[]);
+void searchBookByAuthor(int n[]);
+void searchBookById(int n[]);
+void searchBookByCatagory(int n[]);
 void bookProfile(Book books);
 
 #endif

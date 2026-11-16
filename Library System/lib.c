@@ -7,7 +7,7 @@ void lentBooks() {
     int n[*bookNum], found = 0;
     // need a loop
     printf("Search for the book\n");
-    searchBook(found, n);
+    searchBook(n);
     printf("\nChoose the book to be lent. Type 0 to return: ");
     scanf(" %d", &found);
     if (!found) {

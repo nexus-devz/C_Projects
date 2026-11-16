@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 // #include "user.h"
 // #include "book.h"
 #include "lib.h" // as lib.h has both user.h and book.h in it i dont nned to write them saperately
@@ -14,7 +13,6 @@ Book books[1000];
 
 // pointer init
 int *userNum = &userCount;
-;
 int *bookNum = &bookCount;
 
 const char adminName[] = "admin";
@@ -80,7 +78,7 @@ int main() {
 
                     case '2': {
                         int c = 0, n[bookCount]; // temporary array to store indx with most possible size
-                        searchBook(c, n);
+                        searchBook(n);
 
                         printf("\nChoose the user number from above to see Books's profile. Type 0 to return: ");
                         scanf(" %d", &c);
@@ -127,7 +125,7 @@ int isLoggedIn() {
 }
 
 /* Plan
-1. make a book structure \/
+
 2. make sure to use some of books elemnnt with user such as books keeping duration.
 3. make a profile loading function
 4. make sure to update dues, book kept duration etc with current date

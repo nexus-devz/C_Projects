@@ -21,7 +21,7 @@ void registerBook() {
         printf("Input semester: ");
         scanf(" %d", &(books + u + i)->sem); // need address for as it directes to an integer
         printf("Input catagory: ");
-        scanf(" %s", &(books + u + i)->catg);
+        scanf(" %s", (books + u + i)->catg);
         printf("Input amount: ");
         scanf("%d", &am);
         (books + u + i)->total += am;
@@ -31,23 +31,23 @@ void registerBook() {
     printf("Registration has been completed.\n");
 }
 
-void searchBook(int c, int n[]) {
-
+void searchBook(int n[]) {
+    int c;
     printf("Search by:\n1. Name\n2. Author\n3. Id\n4. Category\n:");
 
     scanf(" %d", &c);
     switch (c) {
     case 1:
-        searchBookByName(n, *bookNum, c);
+        searchBookByName(n);
         break;
     case 2:
-        searchBookByAuthor(n, *bookNum, c);
+        searchBookByAuthor(n);
         break;
     case 3:
-        searchBookById(n, *bookNum, c);
+        searchBookById(n);
         break;
     case 4:
-        searchBookByCatagory(n, *bookNum, c);
+        searchBookByCatagory(n);
         break;
     default:
         printf("Invalid Input\n");
@@ -55,16 +55,16 @@ void searchBook(int c, int n[]) {
     }
 }
 
-void searchBookByName(int n[], int s) {
+void searchBookByName(int n[]) {
     // make this a search by name function**
     int isfnd = 1;
     char name[50];
 
     for (int t = 3; isfnd && t > 0; t--) {
         printf("\nEnter name: ");
-        scanf(" %s", name);
+        scanf(" *bookNum", name);
         int found = 0;
-        for (int i = 0, a = 0; i < s; i++) {
+        for (int i = 0, a = 0; i < *bookNum; i++) {
 
             if (strstr(books[i].name, name)) {
                 n[a++] = i;
@@ -86,12 +86,12 @@ void searchBookByName(int n[], int s) {
         }
     }
 }
-void searchBookByAuthor(int n[], int s) {
+void searchBookByAuthor(int n[]) {
     char author[50];
     printf("\nEnter Author: ");
     scanf(" %s", author);
     int found = 0;
-    for (int i = 0, a = 0; i < s; i++) {
+    for (int i = 0, a = 0; i < *bookNum; i++) {
 
         if (strstr(books[i].author, author)) {
             n[a++] = i;
@@ -108,12 +108,12 @@ void searchBookByAuthor(int n[], int s) {
         printf("books not found.\n");
     }
 }
-void searchBookById(int n[], int s, int c) {
+void searchBookById(int n[]) {
     int id = 0;
     printf("\nEnter Id: ");
     scanf(" %d", &id);
     int found = 0;
-    for (int i = 0, a = 0; i < s; i++) {
+    for (int i = 0, a = 0; i < *bookNum; i++) {
 
         if (books[i].id == id) {
             n[a++] = i;
@@ -132,12 +132,12 @@ void searchBookById(int n[], int s, int c) {
         printf("books not found.\n");
     }
 }
-void searchBookByCatagory(int n[], int s) {
+void searchBookByCatagory(int n[]) {
     char category[10];
     printf("\nEnter Author: ");
     scanf(" %s", category);
     int found = 0;
-    for (int i = 0, a = 0; i < s; i++) {
+    for (int i = 0, a = 0; i < *bookNum; i++) {
 
         if (strstr(books[i].catg, category)) {
             n[a++] = i;
@@ -183,7 +183,7 @@ void bookProfile(Book books) {
         switch (ch) {
         case 1:
             printf("Input name: ");
-            scanf(" %s", &books.name);
+            scanf(" %s", books.name);
             break;
         case 2:
             printf("Input id: ");
@@ -191,7 +191,7 @@ void bookProfile(Book books) {
             break;
         case 3:
             printf("Input author: ");
-            scanf(" %s", &books.author);
+            scanf(" %s", books.author);
             break;
         case 4:
             printf("Input semester: ");
@@ -199,7 +199,7 @@ void bookProfile(Book books) {
             break;
         case 5:
             printf("Input category: ");
-            scanf(" %s", &books.catg);
+            scanf(" %s", books.catg);
             break;
         case 6:
             printf("Input total books: ");
@@ -211,7 +211,7 @@ void bookProfile(Book books) {
             break;
         case 8:
             printf("Input status: ");
-            scanf(" %d", &books.status);
+            scanf(" %s", books.status);
             break;
         default:
             printf("Invalid choice!\n");
