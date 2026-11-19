@@ -14,6 +14,7 @@ Book books[1000];
 // pointer init
 int *userNum = &userCount;
 int *bookNum = &bookCount;
+FILE *fbook, *fmem, *counter;
 
 const char adminName[] = "admin";
 const char adminPass[] = "1234";
@@ -26,7 +27,7 @@ int main() {
     printf("\tWelcome to Ist Library\nPlease verify your user name and password\n\n");
 
     if (isLoggedIn()) {
-        // load and update info
+        load();
         while (opt != '3') {
             printf("Main menu\n");
             printf("\t1. Users\n\t2. Books\n\t3. Quit\n");

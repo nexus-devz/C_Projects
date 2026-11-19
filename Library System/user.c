@@ -1,11 +1,14 @@
 // user functions
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 #include "lib.h" // provides functions/types used here; lib.h includes user.h (but consider including user.h directly if this file depends on User)
 
 void registerUser() {
     int n, u = *userNum;
+    fmem = fopen(FIle_Mem,"a+");
+    counter = fopen("counter.txt", "a+");
+    fseek(fmem,0,SEEK_END);
+    fseek(counter,0,SEEK_END);
     printf("Enter the number of user you want to register: ");
     scanf(" %d", &n);
     // need to comp n and u (but if i use file handling then i dont need it)
@@ -13,17 +16,24 @@ void registerUser() {
 
         printf("user %d:\n", i + 1);
         printf("Input name: ");
-        scanf(" %s", &(users + u + i)->name); // did this cz i just wanted to practice pointer
+        scanf(" %s", (users + u + i)->name); // did this cz i just wanted to practice pointer
         printf("Input id: ");
         scanf(" %d", &(users + u + i)->id);
         printf("Input department: ");
-        scanf(" %s", &(users + u + i)->dept);
+        scanf(" %s", (users + u + i)->dept);
         printf("Input semester: ");
         scanf(" %d", &(users + u + i)->sem);
+        users[u+i].due = users[u+i].booksKept = 0;
+        strcpy(users[u+i].status, "New"); // array cant be assigned after declaration
+        // input all to user file
+        fprintf(fmem,"%8d|%20s|%5s|%5d|%10d|%5d|%10s\n",users[u+i].id,users[u+i].name,users[u+i].dept,users[u+i].sem,users[u+i].booksKept,users[u+i].due,users[u+i].status);
     }
     // updating how many user has been registered and adding with the previous number
     *userNum += n;
+    fprintf(counter,"\n%10d%10d",userCount,bookCount);
     printf("Registration has been completed\n");
+    fclose(fmem);
+    fclose(counter);
 }
 
 void searchUser(int n[], int c) {
@@ -31,11 +41,11 @@ void searchUser(int n[], int c) {
     // int c=0, n[*userNum]; //temporary array to store indx with most possible size
     scanf(" %d", &c);
     if (c == 1) {
-        searchByName(n, *userNum, c);
+        searchByName(n, *userNum);
     }
 }
 
-void searchByName(int n[], int s, int c) {
+void searchByName(int n[], int s) {
     // make this a search by name function**
     char name[50];
     printf("\nEnter name: ");

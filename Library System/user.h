@@ -17,6 +17,6 @@ typedef struct User {
 void registerUser();
 void searchUser(int n[], int c);
 void profile(User user);
-void searchByName(int n[], int s, int c);
-
+void searchByName(int n[], int s);
+void record();
 #endif
