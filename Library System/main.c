@@ -8,8 +8,8 @@
 
 int userCount = 0; // for now
 int bookCount = 0; // for now
-User users[1000];
-Book books[1000];
+User *users;
+Book *books;
 
 // pointer init
 int *userNum = &userCount;

@@ -1,6 +1,7 @@
 // combine functions
 #include <stdio.h>
 #include "lib.h"
+#include <stdlib.h>
 
 void lentBooks() {
     User selUser = *users;
@@ -24,7 +25,19 @@ void lentBooks() {
 }
 
 void load(){
-     fmem = fopen("user.txt", "a+");
+     loadFile();
+     dynamicArrayLoad();
+     loadUserArray();
+     loadBooksArray();
+
+}
+
+//fprint(fmem,"%10d|%30s|%5s|%5d|%5d|%5d|%10s",)
+//71
+//109
+
+void loadFile(){
+    fmem = fopen("user.txt", "a+");
      fbook = fopen("books.txt", "a+");
      counter = fopen("counter.txt","a+");
     
@@ -64,9 +77,65 @@ void load(){
     fclose(fmem);
     fclose(fbook);
     fclose(counter);
-
 }
 
-//fprint(fmem,"%10d|%30s|%5s|%5d|%5d|%5d|%10s",)
-//71
-//109
+void dynamicArrayLoad(){
+    users = malloc((userCount+100) * sizeof(struct User));
+    books = malloc((bookCount+100) * sizeof(struct User));
+    fmem=fopen(FIle_Mem,"r");
+    fbook=fopen(File_Book,"r");
+    for(int i=0; i<userCount; i++){
+        
+    }
+}
+
+void loadUserArray(){
+    fmem = fopen("user.txt", "r");
+    if (fmem == NULL) {
+        perror("user.txt");
+        loadUserArray();
+    }
+    char line[256];
+     fgets(line, sizeof line, fmem);  // Skip the header
+    
+    for (int i = 0; i < userCount && fgets(line, sizeof line, fmem) != NULL; i++) {
+        int fields = sscanf(line,
+            " %8d|%20[^|]|%5[^|]|%5d|%10d|%5d|%10[^\r\n]",
+            &users[i].id, users[i].name, users[i].dept,
+            &users[i].sem, &users[i].booksKept, &users[i].due,
+            users[i].status);
+
+        if (fields != 7) {
+            printf("Parsed %d fields; line=[%s]\n", fields, line);
+            continue;
+        }
+    }
+
+    fclose(fmem);
+}
+
+void loadBooksArray(){
+    fbook = fopen("books.txt", "r");
+    if (fbook == NULL) {
+        perror("user.txt");
+        loadBooksArray();
+    }
+    char line[256];
+     fgets(line, sizeof line, fbook);  // Skip the header
+    
+    for (int i = 0; i < bookCount && fgets(line, sizeof line, fbook) != NULL; i++) {
+        int fields = sscanf(line,
+            " %8d| %30[^|]| %30[^|]| %10[^|]| %5d| %6d| %10d| %10d|%10[^\r\n]",
+            &books[i].id, books[i].name, books[i].author, books[i].catg,
+            &books[i].sem, &books[i].total, &books[i].booklent,
+            &books[i].available, books[i].status);
+
+        if (fields != 9) {
+            printf("Parsed %d fields; line=[%s]\n", fields, line);
+            continue;
+        }
+    }
+
+    fclose(fbook);
+
+}

@@ -3,13 +3,13 @@
 
 #include "book.h"
 #include "user.h"
-#define File_Book "book.txt"
+#define File_Book "books.txt"
 #define FIle_Mem "user.txt"
 
 extern int userCount; // for now
 extern int bookCount; // for now
-extern User users[1000];
-extern Book books[1000];
+extern User *users;
+extern Book *books;
 // pointer def
 extern int *userNum, *bookNum;
 extern FILE* fmem, *fbook, *counter;
@@ -23,4 +23,9 @@ void returnBook();
 void showUserBooks();
 
 void load();
+void loadFile();
+void dynamicArrayLoad();
+
+void loadUserArray();
+void loadBooksArray();
 #endif

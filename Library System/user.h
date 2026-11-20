@@ -1,7 +1,6 @@
 // user.h
 #ifndef USER_H
 #define USER_H
-#include "book.h"
 typedef struct User {
     char name[50];
     char pass[50];
@@ -18,5 +17,4 @@ void registerUser();
 void searchUser(int n[], int c);
 void profile(User user);
 void searchByName(int n[], int s);
-void record();
 #endif

@@ -1,3 +1,0 @@
-User Count|Book Count
-         0         0
-         1         0

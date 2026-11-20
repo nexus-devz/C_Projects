@@ -6,6 +6,10 @@
 
 void registerBook() {
     int n, u = *bookNum;
+    fbook = fopen(File_Book,"a+");
+    counter = fopen("counter.txt", "a+");
+    fseek(fbook,0,SEEK_END);
+    fseek(counter,0,SEEK_END);
     printf("Enter the number of new books you want to register: ");
     scanf(" %d", &n);
     // need to comp n and u (but if i use file handling then i dont need it)
@@ -23,12 +27,16 @@ void registerBook() {
         printf("Input catagory: ");
         scanf(" %s", (books + u + i)->catg);
         printf("Input amount: ");
-        scanf("%d", &am);
+        scanf(" %d", &am);
         (books + u + i)->total += am;
+        fprintf(fbook,"%8d|%30s|%30s|%10s|%5d|%6d|%10d|%10d|%10s\n",books[u+i].id,books[u+i].name,books[u+i].author,books[u+i].catg,books[u+i].sem,books[u+i].total,books[u+i].booklent,books[u+i].available,books[u+i].status);
     }
     // updating how many books has been registered and adding with the previous number
     *bookNum += n;
+    fprintf(counter,"\n%10d%10d",userCount,bookCount);
     printf("Registration has been completed.\n");
+     fclose(fbook);
+    fclose(counter);
 }
 
 void searchBook(int n[]) {
@@ -62,7 +70,7 @@ void searchBookByName(int n[]) {
 
     for (int t = 3; isfnd && t > 0; t--) {
         printf("\nEnter name: ");
-        scanf(" *bookNum", name);
+        scanf("%30s", name);
         int found = 0;
         for (int i = 0, a = 0; i < *bookNum; i++) {
 
@@ -89,7 +97,7 @@ void searchBookByName(int n[]) {
 void searchBookByAuthor(int n[]) {
     char author[50];
     printf("\nEnter Author: ");
-    scanf(" %s", author);
+    scanf(" %30s", author);
     int found = 0;
     for (int i = 0, a = 0; i < *bookNum; i++) {
 
